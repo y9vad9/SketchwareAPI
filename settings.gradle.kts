@@ -1,2 +1,2 @@
-rootProject.name = "Sketchware-API"
+rootProject.name = "SketchwareAPI"
 
