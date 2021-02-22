@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-class SketchcodeJavaAPIClient(
+class SketchwareJavaAPIClient(
     private val baseUrl: String = "http://sketchware.io",
     loggerEnabled: Boolean = false, override val coroutineContext: CoroutineContext = Dispatchers.IO
 ) : CoroutineScope {

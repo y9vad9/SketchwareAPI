@@ -34,7 +34,7 @@ repositories {
     maven("https://dl.kotlingang.fun")
 }
 dependencies {
-    implementation("io.sketchware.api:SketchwareAPI:1.0.3")
+    implementation("io.sketchware.api:SketchwareAPI:1.0.4")
 }
 ```
 
@@ -45,7 +45,7 @@ repositories {
     maven { url 'https://dl.kotlingang.fun' }
 }
 dependencies {
-    implementation "io.sketchware.api:SketchwareJavaAPI:1.0.3"
+    implementation "io.sketchware.api:SketchwareJavaAPI:1.0.4"
 }
 ```
 
