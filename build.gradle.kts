@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "io.sketchware.api"
-version = "1.0"
+version = "1.0.1"
 
 repositories {
     mavenCentral()
@@ -44,7 +44,7 @@ publishing {
         create<MavenPublication>("Deploy") {
             groupId = "io.sketchware.api"
             artifactId = "SketchwareAPI"
-            version = "1.0"
+            version = "1.0.1"
         }
     }
 

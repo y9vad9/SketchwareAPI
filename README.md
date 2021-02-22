@@ -28,7 +28,7 @@ repositories {
     maven("https://sketchcode.fun/dl")
 }
 dependencies {
-    implementation("io.sketchware.api:SketchwareAPI:1.0")
+    implementation("io.sketchware.api:SketchwareAPI:1.0.1")
 }
 ```
 
