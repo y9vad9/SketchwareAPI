@@ -6,3 +6,4 @@
 /.gradle
 /.idea
 /local.properties
+/java-wrapper/local.properties

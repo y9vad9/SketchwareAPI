@@ -6,13 +6,12 @@ plugins {
     `maven-publish`
 }
 
-group = "io.sketchware.api"
-version = "1.0.1"
-
 repositories {
     mavenCentral()
-    maven("https://sketchcode.fun/dl")
 }
+
+group = "io.sketchware.api"
+version = properties["version"]!!
 
 val ktorVersion = "1.5.1"
 
@@ -44,14 +43,18 @@ publishing {
         create<MavenPublication>("Deploy") {
             groupId = "io.sketchware.api"
             artifactId = "SketchwareAPI"
-            version = "1.0.1"
+            version = (properties["version"] as String?)!!
+            pom {
+                name.set("Sketchware API Library")
+                description.set("Coroutine-based KMM Library")
+            }
         }
     }
 
     repositories {
         maven {
             name = "sketchware-api"
-            url = uri(localProperties!!["serverURI"]!!)
+            url = uri("sftp://${localProperties!!["serverIp"]}:22/${localProperties["deployPath"]}")
             credentials {
                 username = (localProperties["username"] as String?)!!
                 password = (localProperties["password"] as String?)!!
@@ -60,4 +63,3 @@ publishing {
     }
 
 }
-

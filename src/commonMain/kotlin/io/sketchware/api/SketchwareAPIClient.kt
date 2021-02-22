@@ -192,12 +192,42 @@ class SketchwareAPIClient(
         getSharedFileCommon("View", requestBody)
 
     /**
+     * Gets shared block file.
+     * @param sharedId - Shared Id (from [BaseShared.sharedId])
+     * @param fileName - Shared Block File to download.
+     */
+    suspend fun getSharedBlockFile(sharedId: Int, fileName: String) =
+        getSharedBlockFile(GetSharedFileRequestBody(sharedId, fileName))
+
+    /**
+     * Gets shared block file.
+     * @param requestBody - request data.
+     */
+    suspend fun getSharedBlockFile(requestBody: GetSharedFileRequestBody) =
+        getSharedFileCommon("Block", requestBody)
+
+    /**
+     * Gets shared view file.
+     * @param sharedId - Shared Id (from [BaseShared.sharedId])
+     * @param fileName - Shared Moreblock File to download.
+     */
+    suspend fun getSharedMoreblockFile(sharedId: Int, fileName: String) =
+        getSharedMoreblockFile(GetSharedFileRequestBody(sharedId, fileName))
+
+    /**
+     * Gets shared view file.
+     * @param requestBody - request data.
+     */
+    suspend fun getSharedMoreblockFile(requestBody: GetSharedFileRequestBody) =
+        getSharedFileCommon("MoreBlock", requestBody)
+
+    /**
      * Private common API to get file of some shared thing.
      * @param tag - View/MoreBlock/Block.
      * @param requestBody - request data.
      */
     private suspend fun getSharedFileCommon(tag: String, requestBody: GetSharedFileRequestBody) =
-        httpClient.post<ByteArray>("$baseUrl/downloadShared${tag}File.do") {
+        httpClient.postRequest<ByteArray>("$baseUrl/downloadShared${tag}File.do") {
             body = requestBody
         }
 
@@ -217,7 +247,7 @@ class SketchwareAPIClient(
      * @param tag - View/MoreBlock/Block.
      */
     private suspend fun getSharedComments(id: Int, tag: String) =
-        httpClient.postRequest<SharedComment>(url = "$baseUrl/reqShared${tag}CommentsList.do") {
+        httpClient.postRequest<List<SharedComment>>(url = "$baseUrl/reqShared${tag}CommentsList.do") {
             body = mapOf("shared_id" to id)
         }
 
@@ -227,7 +257,7 @@ class SketchwareAPIClient(
      * @param tag - View/MoreBlock/Block.
      */
     private suspend fun getSharedTags(id: Int, tag: String) =
-        httpClient.postRequest<SharedTag>(url = "$baseUrl/reqShared${tag}Tags.do") {
+        httpClient.postRequest<List<SharedTag>>(url = "$baseUrl/reqShared${tag}Tags.do") {
             body = mapOf("shared_id" to id)
         }
 
@@ -289,7 +319,7 @@ class SketchwareAPIClient(
      * Gets exported project by [id].
      * @param id - url id (from [SharedProject.urlId].
      */
-    suspend fun getProject(id: Int) =
+    suspend fun getExportedProject(id: Int) =
         httpClient.postRequest<List<SharedProject>>(url = "$baseUrl/reqGetExportData.do") {
             body = mapOf("url_id" to id)
         }
@@ -472,7 +502,7 @@ class SketchwareAPIClient(
         deviceId: String,
         accessToken: String,
         gcmId: String
-    ) = httpClient.postRequest<AuthorizedModel>("https://sketchware.io/registerSnsUser.do") {
+    ) = httpClient.postRequest<AuthorizedModel>("$baseUrl/registerSnsUser.do") {
         body = buildJsonObject {
             put("is_sns_user", "Y")
             put("login_id", email)
@@ -482,5 +512,61 @@ class SketchwareAPIClient(
             put("gcm_id", gcmId)
         }
     }
+
+    /**
+     * Gets user's exported apks.
+     * @param sessionId - session id (see: [AuthorizedModel.sessionId])
+     * @param email - user email.
+     */
+    suspend fun getUserExportedApks(sessionId: String, email: String) =
+        httpClient.postRequest<List<ExportedApk>>("$baseUrl/reqListExportApk.do") {
+            body = mapOf(
+                "session_id" to sessionId,
+                "login_id" to email
+            )
+        }
+
+    /**
+     * Gets user's exported projects.
+     * @param sessionId - session id (see: [AuthorizedModel.sessionId])
+     * @param email - user email.
+     */
+    suspend fun getUserExportedProjects(sessionId: String, email: String) =
+        httpClient.postRequest<List<ExportedApk>>("$baseUrl/reqListExportData.do") {
+            body = mapOf(
+                "session_id" to sessionId,
+                "login_id" to email
+            )
+        }
+
+    /**
+     * Removes user's exported apk.
+     * @param sessionId - session id (see: [AuthorizedModel.sessionId])
+     * @param email - user email.
+     * @param urlId - url id (see: [ExportedApk.urlId])
+     */
+    suspend fun removeExportedApk(sessionId: String, email: String, urlId: Int) =
+        httpClient.postRequest<String>("$baseUrl/reqDeleteApkUrl.do") {
+            body = buildJsonObject {
+                put("session_id", sessionId)
+                put("login_id", email)
+                put("url_id", urlId)
+            }
+        }
+
+    /**
+     * Removes user's exported project.
+     * @param sessionId - session id (see: [AuthorizedModel.sessionId])
+     * @param email - user email.
+     * @param urlId - url id (see: [SharedProject.urlId])
+     */
+    suspend fun removeExportedProject(sessionId: String, email: String, urlId: Int) =
+        httpClient.postRequest<String>("$baseUrl/reqDeleteDataUrl.do") {
+            body = buildJsonObject {
+                put("session_id", sessionId)
+                put("login_id", email)
+                put("url_id", urlId)
+            }
+        }
 
 }

@@ -25,10 +25,19 @@ client.getSharedMoreblockDetails(__moreblockId__).success { body: SharedDetails 
 build.gradle.kts:
 ```kotlin
 repositories {
-    maven("https://sketchcode.fun/dl")
+    maven("https://dl.kotlingang.fun")
 }
 dependencies {
-    implementation("io.sketchware.api:SketchwareAPI:1.0.1")
+    implementation("io.sketchware.api:SketchwareAPI:1.0.3")
+}
+```
+For Java, you also need to add the Java wrapper:
+```groovy
+repositories {
+    maven { url 'https://dl.kotlingang.fun' }
+}
+dependencies {
+    implementation "io.sketchware.api:SketchwareJavaAPI:1.0.3"
 }
 ```
 
