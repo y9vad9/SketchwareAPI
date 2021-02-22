@@ -10,7 +10,7 @@ import kotlin.coroutines.CoroutineContext
 class SketchcodeJavaAPIClient(
     private val baseUrl: String = "http://sketchware.io",
     loggerEnabled: Boolean = false, override val coroutineContext: CoroutineContext = Dispatchers.IO
-): CoroutineScope {
+) : CoroutineScope {
     private val client = SketchwareAPIClient(baseUrl, loggerEnabled)
 
     fun getMinSketchwareVersion(responseCallback: ResponseCallback<Int>) = launch {

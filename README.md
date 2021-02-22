@@ -4,7 +4,9 @@ A multi-platform library for interacting with the Sketchware API. At the moment,
 but will be added upon [request](https://github.com/y9neon/SketchwareAPI/issues/new).
 
 # 🧪 Examples
+
 Let's get a list of the latest moreblocks:
+
 ```kotlin
 client.getRecentSharedMoreblocks(20, 0).success { list: List<BaseShared> ->
     println(list) // successfully loaded
@@ -12,17 +14,21 @@ client.getRecentSharedMoreblocks(20, 0).success { list: List<BaseShared> ->
     // some error occurred
 }
 ```
+
 Let's get some moreblock comments:
+
 ```kotlin
-client.getSharedMoreblockDetails(__moreblockId__).success { body: SharedDetails ->  
+client.getSharedMoreblockDetails(__moreblockId__).success { body: SharedDetails ->
     println(body)
-}.error { 
+}.error {
     // an error has occurred
 }
 ```
 
 # 📐 Implementation
+
 build.gradle.kts:
+
 ```kotlin
 repositories {
     maven("https://dl.kotlingang.fun")
@@ -31,7 +37,9 @@ dependencies {
     implementation("io.sketchware.api:SketchwareAPI:1.0.3")
 }
 ```
+
 For Java, you also need to add the Java wrapper:
+
 ```groovy
 repositories {
     maven { url 'https://dl.kotlingang.fun' }
