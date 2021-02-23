@@ -569,4 +569,82 @@ class SketchwareAPIClient(
             }
         }
 
+    /**
+     * Private common api to add download to shared collection.
+     */
+    private suspend fun addDownloadToShared(tag: String, sharedId: Int) =
+        httpClient.postRequest<String>("$baseUrl/reqShared${tag}DownCntAdd.do") {
+            body = buildJsonObject {
+                put("shared_id", sharedId)
+            }
+        }
+
+    /**
+     * Adds 1 to download count for shared moreblock by [sharedId].
+     * @param sharedId - Shared id (see: [BaseShared.sharedId]).
+     */
+    suspend fun addDownloadToSharedMoreblockCount(sharedId: Int) =
+        addDownloadToShared("MoreBlock", sharedId)
+
+    /**
+     * Adds 1 to download count for shared block by [sharedId].
+     * @param sharedId - Shared id (see: [BaseShared.sharedId]).
+     */
+    suspend fun addDownloadToSharedBlockCount(sharedId: Int) =
+        addDownloadToShared("Block", sharedId)
+
+    /**
+     * Adds 1 to download count for shared view by [sharedId].
+     * @param sharedId - Shared id (see: [BaseShared.sharedId]).
+     */
+    suspend fun addDownloadToSharedViewCount(sharedId: Int) =
+        addDownloadToShared("View", sharedId)
+
+    /**
+     * Private common api for shared collections.
+     * @return string with result.
+     */
+    private suspend fun likeSharedCollection(
+        tag: String, sessionId: String, email: String, sharedId: Int
+    ) = httpClient.postRequest<String>("$baseUrl/reqInsertShared${tag}Like.do") {
+        body = buildJsonObject {
+            put("session_id", sessionId)
+            put("login_id", email)
+            put("shared_id", sharedId)
+        }
+    }
+
+    /**
+     * Add like to shared view count.
+     * @param sessionId - Session id (see [authorizeUser])
+     * @param email - User email (which likes it).
+     * @param sharedId - Shared id (see: [BaseShared.sharedId]).
+     * @return String with result ("success" or some error)
+     */
+    suspend fun likeSharedView(
+        sessionId: String, email: String, sharedId: Int
+    ) = likeSharedCollection("View", sessionId, email, sharedId)
+
+    /**
+     * Add like to shared block count.
+     * @param sessionId - Session id (see [authorizeUser])
+     * @param email - User email (which likes it).
+     * @param sharedId - Shared id (see: [BaseShared.sharedId]).
+     * @return String with result ("success" or some error)
+     */
+    suspend fun likeSharedBlock(
+        sessionId: String, email: String, sharedId: Int
+    ) = likeSharedCollection("Block", sessionId, email, sharedId)
+
+    /**
+     * Add like to shared block count.
+     * @param sessionId - Session id (see [authorizeUser])
+     * @param email - User email (which likes it).
+     * @param sharedId - Shared id (see: [BaseShared.sharedId]).
+     * @return String with result ("success" or some error)
+     */
+    suspend fun likeSharedMoreblock(
+        sessionId: String, email: String, sharedId: Int
+    ) = likeSharedCollection("MoreBlock", sessionId, email, sharedId)
+
 }

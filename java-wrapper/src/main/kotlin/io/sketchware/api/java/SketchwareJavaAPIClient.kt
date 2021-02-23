@@ -352,5 +352,52 @@ class SketchwareJavaAPIClient(
             .error(responseCallback::onError)
     }
 
+    fun addDownloadToSharedMoreblockCount(
+        sharedId: Int, responseCallback: ResponseCallback<String>
+    ) = launch {
+        client.addDownloadToSharedMoreblockCount(sharedId)
+            .success(responseCallback::onSuccess)
+            .error(responseCallback::onError)
+    }
+
+    fun addDownloadToSharedBlockCount(
+        sharedId: Int, responseCallback: ResponseCallback<String>
+    ) = launch {
+        client.addDownloadToSharedBlockCount(sharedId)
+            .success(responseCallback::onSuccess)
+            .error(responseCallback::onError)
+    }
+
+    fun addDownloadToSharedViewCount(
+        sharedId: Int, responseCallback: ResponseCallback<String>
+    ) = launch {
+        client.addDownloadToSharedViewCount(sharedId)
+            .success(responseCallback::onSuccess)
+            .error(responseCallback::onError)
+    }
+
+    fun likeSharedView(
+        sessionId: String, email: String, sharedId: Int, responseCallback: ResponseCallback<String>
+    ) = launch {
+        client.likeSharedView(sessionId, email, sharedId)
+            .success(responseCallback::onSuccess)
+            .error(responseCallback::onError)
+    }
+
+    fun likeSharedBlock(
+        sessionId: String, email: String, sharedId: Int, responseCallback: ResponseCallback<String>
+    ) = launch {
+        client.likeSharedBlock(sessionId, email, sharedId)
+            .success(responseCallback::onSuccess)
+            .error(responseCallback::onError)
+    }
+
+    fun likeSharedMoreblock(
+        sessionId: String, email: String, sharedId: Int, responseCallback: ResponseCallback<String>
+    ) = launch {
+        client.likeSharedMoreblock(sessionId, email, sharedId)
+            .success(responseCallback::onSuccess)
+            .error(responseCallback::onError)
+    }
 
 }

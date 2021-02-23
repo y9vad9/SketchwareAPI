@@ -17,7 +17,6 @@ client.getRecentMoreblocks(20, 0).success { list: List<BaseShared> ->
 Let's get shared moreblock details:
 
 ```kotlin
-val list: List<BaseShared>
 client.getSharedMoreblockDetails(list[0].sharedId).success {
     println(it.blockName!!) // block name not null if there is a moreblock/block
 }
@@ -26,12 +25,21 @@ client.getSharedMoreblockDetails(list[0].sharedId).success {
 Also, we can get comments in this shared collection:
 
 ```kotlin
-val list: List<BaseShared>
 client.getSharedMoreblockComments(list[0].sharedId).success { list: List<SharedComment> ->
     list.forEach {
         println("${it.userAlias}: ${it.comment}") // User name: comment value.
     }
 }
 ```
+If you want so, you can save moreblock on their own. There are files with names - 
+`more_block_data`, `spec_data`, `res_image.zip`, `res_font.zip`, `res_sound.zip` (last 3 may not exist).
+```kotlin
+client.getSharedMoreblockFile(list[0].sharedId, _file_name_).success { bytes: ByteArray ->
+    File(_somewhere_).writeBytes(bytes)
+}.error {
+    // file not found
+}
+```
+
 
 You can do the same with Views and Blocks.
