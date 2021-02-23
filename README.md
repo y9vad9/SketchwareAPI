@@ -49,7 +49,7 @@ dependencies {
 }
 ```
 You can also check 
-[it](https://github.com/y9neon/SketchwareAPI/tree/master/tutorials/How%20to%20use%20library%20in%20java) out.
+[it](https://github.com/y9neon/SketchwareAPI/tree/master/tutorials/How%20to%20use%20library%20in%20Java) out.
 
 # 📞 Contacts
 
