@@ -48,11 +48,13 @@ dependencies {
     implementation "io.sketchware.api:SketchwareJavaAPI:1.0.5"
 }
 ```
-You can also check [it](https://github.com/y9neon/SketchwareAPI/issues/1) out.
+You can also check 
+[it](https://github.com/y9neon/SketchwareAPI/tree/master/tutorials/How%20to%20use%20library%20in%20java) out.
 
 # 📞 Contacts
 
-Below are links to sources where you can contact for questions about the library or just chat (like [@sketchware_community](https://t.me/sketchware_community)).
+Below are links to sources where you can contact for questions about the library or just chat (
+like [@sketchware_community](https://t.me/sketchware_community)).
 
 - My telegram - [@y9neon](https://t.me/y9neon).
 - Sketchware community group - [@sketchware_community](https://t.me/sketchware_community).

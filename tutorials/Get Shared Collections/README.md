@@ -31,8 +31,10 @@ client.getSharedMoreblockComments(list[0].sharedId).success { list: List<SharedC
     }
 }
 ```
-If you want so, you can save moreblock on their own. There are files with names - 
+
+If you want so, you can save moreblock on their own. There are files with names -
 `more_block_data`, `spec_data`, `res_image.zip`, `res_font.zip`, `res_sound.zip` (last 3 may not exist).
+
 ```kotlin
 client.getSharedMoreblockFile(list[0].sharedId, _file_name_).success { bytes: ByteArray ->
     File(_somewhere_).writeBytes(bytes)
@@ -40,6 +42,5 @@ client.getSharedMoreblockFile(list[0].sharedId, _file_name_).success { bytes: By
     // file not found
 }
 ```
-
 
 You can do the same with Views and Blocks.
