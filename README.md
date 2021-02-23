@@ -48,6 +48,7 @@ dependencies {
     implementation "io.sketchware.api:SketchwareJavaAPI:1.0.4"
 }
 ```
+You can also check [it](https://github.com/y9neon/SketchwareAPI/issues/1) out.
 
 # 📞 Contacts
 
