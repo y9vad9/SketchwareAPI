@@ -52,8 +52,7 @@ You can also check [it](https://github.com/y9neon/SketchwareAPI/issues/1) out.
 
 # 📞 Contacts
 
-Below are links to sources where you can contact for questions about the library or just chat (
-like [@sketchware_community](https://t.me/sketchware_community)).
+Below are links to sources where you can contact for questions about the library or just chat (like [@sketchware_community](https://t.me/sketchware_community)).
 
 - My telegram - [@y9neon](https://t.me/y9neon).
 - Sketchware community group - [@sketchware_community](https://t.me/sketchware_community).
