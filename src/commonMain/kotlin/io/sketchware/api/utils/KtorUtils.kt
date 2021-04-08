@@ -12,3 +12,12 @@ internal suspend inline fun <reified T> HttpClient.postRequest(
 } catch (e: Exception) {
     Response<T>(null, e)
 }
+
+internal suspend inline fun <reified T> HttpClient.getRequest(
+    url: String,
+    crossinline block: HttpRequestBuilder.() -> Unit = {},
+) = try {
+    Response(get<T>(urlString = url, block))
+} catch (e: Exception) {
+    Response<T>(null, e)
+}
