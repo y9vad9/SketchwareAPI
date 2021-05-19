@@ -3,6 +3,8 @@
 A multi-platform library for interacting with the Sketchware API. At the moment, not all requests have been implemented,
 but will be added upon [request](https://github.com/y9neon/SketchwareAPI/issues/new).
 
+> Looks like Sketchware have disabled their API. So it's not relevant yet, but maybe the API will still be restored. We are waiting for news.
+
 # 🧪 Examples
 
 Let's get a list of the latest moreblocks:
